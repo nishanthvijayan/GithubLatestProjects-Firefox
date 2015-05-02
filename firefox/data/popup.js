@@ -22,15 +22,18 @@ function putdata(json)
 }
 
 function fetchdata(){
-
+  date = new Date(new Date().getTime()-7*24*60*60*1000).toISOString().slice(0,10)
   req =  new XMLHttpRequest();
-  req.open("GET",'https://api.github.com/search/repositories?q=created:%3E2015-04-25&sort=stars&order=desc',true);
+  req.open("GET",'https://api.github.com/search/repositories?q=created:%3E'+date+'&sort=stars&order=desc',true);
   req.send();
   req.onload = function(){
 
     $("span").remove();
-    $("footer a:nth-child(2)").before('<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<iframe src="https://ghbtns.com/github-btn.html?user=nishanthvijayan&repo=codercalendar&type=star&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe></span>');
+    $("footer a:nth-child(2)").before('<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<iframe src="https://ghbtns.com/github-btn.html?user=nishanthvijayan&repo=GithubLatestProjects-Firefox&type=star&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe></span>');
     
+    // cache creation
+    localStorage.cache  = req.responseText;
+
     res = JSON.parse(req.responseText);
     putdata(res);
 
@@ -41,6 +44,11 @@ function fetchdata(){
 
 
 $(document).ready(function(){
+
+  if(localStorage.cache){
+    localData = JSON.parse(localStorage.cache);
+    putdata(localData);
+  }
 
   fetchdata();
   setInterval(function(){
