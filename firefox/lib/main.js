@@ -14,10 +14,10 @@ var newsfeed = panels.Panel({
 
 var button = buttons.ActionButton({
   id: "GitHubLatest",
-  label: "Upcoming and Popular repos on Github",
+  label: "Helps you find Up & Coming Projects on Github.",
   icon: {
-    "16": "./img/icon32.png",
-    "32": "./img/icon32.png"
+    "16": "./img/icon56.png",
+    "32": "./img/icon56.png"
   },
   onClick: popup 
 })

@@ -7,16 +7,15 @@ function putdata(json)
 
   $.each(json.items , function(i,repo){ 
     
-    if(repo.language!=null)language = '<h5>('+repo.language+')</h5><br>';
+    if(repo.language!=null)language = '<h5 class="language">('+repo.language+')</h5><br>';
     else language = "";
 
     if(repo.description!=null)description = '<h5 class="desc">'+repo.description+'</h5><br>';
     else description = "";
 
-    $("#hot").append('<li data="'+repo.html_url+'"><h4>'+repo.name+'</h4>\
-      <iframe src="https://ghbtns.com/github-btn.html?user='+repo.owner.login+'&repo='+repo.name+'&type=star&count=true" frameborder="0" scrolling="0" width="100px" height="40px"></iframe><br>'+
+    $("#hot").append('<li data="'+repo.html_url+'"><h4>'+repo.name+'</h4>'+
       language+
-      description+'</li><hr>')
+      description+'<h5>'+repo.stargazers_count+' Stars</h5></li><hr>')
   });
 
 }
@@ -32,9 +31,6 @@ function fetchdata(){
     $("span").remove();
     $("footer a:nth-child(2)").before('<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<iframe src="https://ghbtns.com/github-btn.html?user=nishanthvijayan&repo=GithubLatestProjects-Firefox&type=star&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe></span>');
     
-    // cache creation
-    localStorage.cache  = req.responseText;
-
     res = JSON.parse(req.responseText);
     putdata(res);
 
@@ -53,15 +49,11 @@ function imgToggle(){
 
 $(document).ready(function(){
 
-  if(localStorage.cache){
-    localData = JSON.parse(localStorage.cache);
-    putdata(localData);
-  }
-
   fetchdata();
+  // data is fetched only once in 1 hr.
   setInterval(function(){
     fetchdata();
-  }, 300000);
+  }, 600000);
 
   
   //sends "link to be opened" to main.js
