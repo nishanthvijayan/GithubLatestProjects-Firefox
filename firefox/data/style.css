@@ -9,12 +9,15 @@ body {
 
 header{
   background-color: #333;
-  height: 50px;
+  height: 40px;
   color : #ffffff;
   width: 100%;
   top:0%;
   padding-top: 10px;
   text-align: center;
+}
+header > h3{
+  display: inline-block;
 }
 li > h4{
   display: inline-block;
@@ -54,4 +57,16 @@ footer > a{
   text-decoration: underline;
   cursor: pointer;
   font-size: small;
+}
+.loading{
+  position: absolute;
+  left: 90%;
+  height: 18px;
+  width: 18px;
+}
+.info{
+  position: absolute;
+  left: 80%;
+  height: 18px;
+  width: 18px;
 }
