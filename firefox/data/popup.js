@@ -6,16 +6,40 @@ function putdata(json)
 
 
   $.each(json.items , function(i,repo){ 
+
+    var node = document.createElement("li");
+    node.data = repo.html_url;
+
+    var nameText = document.createTextNode(repo.name);
+    var nameNode = document.createElement("h4");
+    nameNode.appendChild(nameText);
+    node.appendChild(nameNode);
     
-    if(repo.language!=null)language = '<h5 class="language">('+repo.language+')</h5><br>';
-    else language = "";
+    if(repo.language!=null){
+      var languageText = document.createTextNode('('+repo.language+')');
+      var languageNode = document.createElement("h5");
+      languageNode.appendChild(languageText);
+  
+      node.appendChild(languageNode);
+      node.appendChild(document.createElement("br"));
+    }
+    if(repo.description!=null){
+      var descText = document.createTextNode(repo.description);
+      var descNode = document.createElement("h5");
+      descNode.appendChild(descText);
+      descNode.className = "desc";
+  
+      node.appendChild(descNode);
+      node.appendChild(document.createElement("br"));  
+    }
 
-    if(repo.description!=null)description = '<h5 class="desc">'+repo.description+'</h5><br>';
-    else description = "";
-
-    $("#hot").append('<li data="'+repo.html_url+'"><h4>'+repo.name+'</h4>'+
-      language+
-      description+'<h5>'+repo.stargazers_count+' Stars</h5></li><hr>')
+    var starText = document.createTextNode(repo.stargazers_count+' Stars');
+    var starNode = document.createElement("h5");
+    starNode.appendChild(starText);
+    node.appendChild(starNode);
+    
+    document.getElementById("hot").appendChild(node);
+    document.getElementById("hot").appendChild(document.createElement("hr"));
   });
 
 }
@@ -50,7 +74,7 @@ function imgToggle(){
 $(document).ready(function(){
 
   fetchdata();
-  // data is fetched only once in 1 hr.
+  // data is fetched only once in 10min.
   setInterval(function(){
     fetchdata();
   }, 600000);
@@ -58,7 +82,7 @@ $(document).ready(function(){
   
   //sends "link to be opened" to main.js
   $("body").on('click',"li", function(){
-    self.port.emit("linkClicked",$(this).attr('data'));
+    self.port.emit("linkClicked",this.data);
     return false;
   });
   
@@ -78,4 +102,3 @@ $(document).ready(function(){
     return false;
   });
 });
-
