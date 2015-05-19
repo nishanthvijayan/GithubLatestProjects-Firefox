@@ -53,7 +53,7 @@ function fetchdata(){
   req.onload = function(){
     imgToggle();
     $("span").remove();
-    $("footer a:nth-child(2)").before('<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<iframe src="https://ghbtns.com/github-btn.html?user=nishanthvijayan&repo=GithubLatestProjects-Firefox&type=star&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe></span>');
+    $("header > h3").after('<span><iframe src="https://ghbtns.com/github-btn.html?user=nishanthvijayan&repo=GithubLatestProjects-Firefox&type=star&count=false" frameborder="0" scrolling="0" width="100px" height="20px"></iframe></span>');
     
     res = JSON.parse(req.responseText);
     putdata(res);
@@ -93,7 +93,7 @@ $(document).ready(function(){
   });
 
   $("body").on('click',".info", function(){
-    window.alert("The Github projects show here were all created within the past 7 days and are ordered according to the number of star they have.");
+    window.alert("The Github projects shown here were all created within the past 7 days and are ordered according to the number of star they have.");
     return false;
   });
 
