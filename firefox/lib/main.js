@@ -2,7 +2,7 @@ var buttons = require('sdk/ui/button/action');
 var panels = require("sdk/panel");
 var self = require("sdk/self");
 var tabs = require("sdk/tabs");
-
+var preferences = require("sdk/simple-prefs");
 
 var newsfeed = panels.Panel({
   width: 350,
@@ -32,3 +32,6 @@ newsfeed.port.on("linkClicked", function (text) {
   tabs.open(text);
 });
 
+preferences.on("days", function(){
+  newsfeed.port.emit("Preference_Changed",preferences.prefs["days"] );
+});

@@ -46,7 +46,8 @@ function putdata(json)
 
 function fetchdata(){
   imgToggle();
-  date = new Date(new Date().getTime()-7*24*60*60*1000).toISOString().slice(0,10)
+  daysSinceCreation = parseInt(localStorage.daysSinceCreation);
+  date = new Date(new Date().getTime()-daysSinceCreation*24*60*60*1000).toISOString().slice(0,10)
   req =  new XMLHttpRequest();
   req.open("GET",'https://api.github.com/search/repositories?q=created:%3E'+date+'&sort=stars&order=desc',true);
   req.send();
@@ -72,6 +73,7 @@ function imgToggle(){
 }
 
 $(document).ready(function(){
+  if(!localStorage.daysSinceCreation)localStorage.daysSinceCreation = "7";
 
   fetchdata();
   // data is fetched only once in 10min.
@@ -93,12 +95,17 @@ $(document).ready(function(){
   });
 
   $("body").on('click',".info", function(){
-    window.alert("The Github projects shown here were all created within the past 7 days and are ordered according to the number of star they have.");
+    window.alert("The Github projects shown here were all created within the past few days ( 7 by default ) and are ordered according to the number of star they have.");
     return false;
   });
 
   $("body").on('click',".loading", function(){
     fetchdata();
     return false;
+  });
+
+  self.port.on("Preference_Changed",function(data){
+    localStorage.daysSinceCreation = data;
+    fetchdata();
   });
 });
