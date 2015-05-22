@@ -39,9 +39,18 @@ hr {
     color: #e5e5e5;
     background-color: #e5e5e5;
 }
-.desc{
-  font-weight: normal;
+.name{
+  font-weight: 500;
 }
+.language{
+  font-weight: 400;
+}
+.desc{
+  font-weight: 400;
+}
+.stars{
+  font-weight: 100;
+} 
 footer{
   padding: 15px;
   color: white;

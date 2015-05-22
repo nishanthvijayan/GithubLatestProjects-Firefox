@@ -13,13 +13,14 @@ function putdata(json)
     var nameText = document.createTextNode(repo.name);
     var nameNode = document.createElement("h4");
     nameNode.appendChild(nameText);
+    nameNode.className = "name";
     node.appendChild(nameNode);
     
     if(repo.language!=null){
       var languageText = document.createTextNode('('+repo.language+')');
       var languageNode = document.createElement("h5");
       languageNode.appendChild(languageText);
-  
+      languageNode.className = "language";
       node.appendChild(languageNode);
       node.appendChild(document.createElement("br"));
     }
@@ -28,7 +29,6 @@ function putdata(json)
       var descNode = document.createElement("h5");
       descNode.appendChild(descText);
       descNode.className = "desc";
-  
       node.appendChild(descNode);
       node.appendChild(document.createElement("br"));  
     }
@@ -36,6 +36,7 @@ function putdata(json)
     var starText = document.createTextNode(repo.stargazers_count+' Stars');
     var starNode = document.createElement("h5");
     starNode.appendChild(starText);
+    starNode.className = "stars"
     node.appendChild(starNode);
     
     document.getElementById("hot").appendChild(node);
@@ -95,7 +96,7 @@ $(document).ready(function(){
   });
 
   $("body").on('click',".info", function(){
-    window.alert("The Github projects shown here were all created within the past few days ( 7 by default ) and are ordered according to the number of star they have.");
+    window.alert("The Github projects shown here were all created within the past few days ( 7 by default ) and are ordered according to the number of star they have.\nTo change the number of days go to Add-on Manager > Preferecnes");
     return false;
   });
 
