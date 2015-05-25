@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Github Latest</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="options.css">
+  <script src="jquery.js"></script>
+  <script src="options.js"></script>
+
+</head>
+<body class="flex">
+  	<div id="header" class="flex">
+	    <table width="100%"><tbody>
+	      	<tr>
+		        <td rowspan="2" class="icon"></td>
+		        <td class="title"><span><h3>Github Latest<h3></span></td>
+		        
+		        <td rowspan="2" class="links">
+		            <a class="donatebutton" href="https://gratipay.com/nishanthvijayan/" >Make a Donation</a>
+		        </td>
+		        
+		        <td rowspan="2" class="links">
+		            <span><iframe src="https://ghbtns.com/github-btn.html?user=nishanthvijayan&type=follow&count=false" frameborder="0" scrolling="0" width="220px" height="25px"></iframe></span>
+		        </td>
+
+		        <td rowspan="2" class="links">
+		          <a href="https://addons.mozilla.org/en-US/firefox/addon/github-latest/"><img src="img/firefox.png"></a>
+		          <a href="https://github.com/nishanthvijayan/GithubLatestProjects-Firefox/"><img src="img/github.png"></a>
+		        </td>
+	      	</tr>
+	      	<tr>
+	        	<td class="short"><span class="note">Discover Up & Coming Projects on Github.</span></td>
+	      	</tr>
+		</tbody></table>
+  	</div>
+
+  	<div id="content" class="flex">
+    	<table width="100%"><tbody>
+    		<tr>
+        		<td>What's new?</td>
+        		<td>
+        			<label><span >v0.0.4</span></label>
+          			<p class="note" >Minor Bug Fixes.</p>
+          			<p class="note" >Better settings page.</p>
+					<p class="spacer"></p>
+					<p class="note">If you find Github Latest useful, please rate the extension or star our <a href="https://github.com/nishanthvijayan/GithubLatestProjects-Firefox/">Github repo</a>.</p>
+					<p class="note">If you would like to see any new feature added to Github Latest, or if you found any bugs , log them <a href="https://github.com/nishanthvijayan/GithubLatestProjects-Firefox/issues">here</a></p>
+        		</td>
+      		</tr>
+    		<tr>
+        		<td>Settings:</td>
+        		<td>
+
+          			<span>Check for project data updates every (in minutes):</span> <input id="updateInterval" min="5" type="number">
+          			<p class="note" >Minimum period is 5 minutes.</p>
+					<p class="spacer"></p>
+
+					<span>Show projects that were created within the last (in days):</span> <input id="daysSinceCreation" min="1" type="number">
+          			<p class="note" >Minimum period is 1 day.</p>
+					<p class="spacer"></p>
+
+          			<span>Max: number of repos that will be listed:</span> <input id="maxCount" max="30" min="1" type="number">
+          			<p class="note" >Maximum value is 30.</p>
+					<p class="spacer"></p>
+
+          			<span>Do not show projects with stars less than: </span> <input id="starCutoff" min="1" type="number">
+					<p class="spacer"></p>
+
+					<p class="note">Click the refresh button in the extension to see the changes take effect.</p>
+        		</td>
+      		</tr>
+    </tbody></table>
+	</div>
+</body>
+</html>

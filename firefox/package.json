@@ -5,11 +5,5 @@
   "description": "Helps you find Up & Coming Projects on Github.",
   "author": "Nishanth Vijayan",
   "license": "MPL 2.0",
-  "version": "0.0.3",
-  "preferences": [{
-    "type": "integer",
-    "name": "days",
-    "value": 7,
-    "title": "Show repos that were created within the last(days)"
-	}]
+  "version": "0.0.4"
 }

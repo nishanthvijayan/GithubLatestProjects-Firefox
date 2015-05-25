@@ -4,9 +4,12 @@ function putdata(json)
   $("#hot > li").remove();
   $("hr").remove();
 
+  for (var i = 0; i < parseInt(localStorage.maxCount);i++ ) {
 
-  $.each(json.items , function(i,repo){ 
+    repo = json.items[i];
 
+    if(parseInt(repo.stargazers_count)<parseInt(localStorage.starCutoff)){break;}
+    
     var node = document.createElement("li");
     node.data = repo.html_url;
 
@@ -41,7 +44,7 @@ function putdata(json)
     
     document.getElementById("hot").appendChild(node);
     document.getElementById("hot").appendChild(document.createElement("hr"));
-  });
+  };
 
 }
 
@@ -74,13 +77,16 @@ function imgToggle(){
 }
 
 $(document).ready(function(){
+  
+  if(!localStorage.updateInterval)localStorage.updateInterval = "10";
   if(!localStorage.daysSinceCreation)localStorage.daysSinceCreation = "7";
-
+  if(!localStorage.maxCount)localStorage.maxCount = "15";
+  if(!localStorage.starCutoff)localStorage.starCutoff = "5";
+  
   fetchdata();
-  // data is fetched only once in 10min.
   setInterval(function(){
     fetchdata();
-  }, 600000);
+  }, 60000*parseInt(localStorage.updateInterval));
 
   
   //sends "link to be opened" to main.js
@@ -95,18 +101,13 @@ $(document).ready(function(){
     return false;
   });
 
-  $("body").on('click',".info", function(){
-    window.alert("The Github projects shown here were all created within the past few days ( 7 by default ) and are ordered according to the number of star they have.\nTo change the number of days go to Add-on Manager > Preferecnes");
-    return false;
+  $("body").on('click',".settings-btn", function(){
+    self.port.emit("linkClicked", "options.html" );
   });
 
   $("body").on('click',".loading", function(){
-    fetchdata();
-    return false;
+    src = $('.loading').attr('src');
+    if(src=="img/refresh-white.png") fetchdata();
   });
 
-  self.port.on("Preference_Changed",function(data){
-    localStorage.daysSinceCreation = data;
-    fetchdata();
-  });
 });
