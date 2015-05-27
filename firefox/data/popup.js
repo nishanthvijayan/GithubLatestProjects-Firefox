@@ -3,7 +3,7 @@ function putdata(json)
 
   $("#hot > li").remove();
   $("hr").remove();
-
+  $("#hot").append("<hr>");
   for (var i = 0; i < parseInt(localStorage.maxCount);i++ ) {
 
     repo = json.items[i];
@@ -13,20 +13,26 @@ function putdata(json)
     var node = document.createElement("li");
     node.data = repo.html_url;
 
-    var nameText = document.createTextNode(repo.name);
-    var nameNode = document.createElement("h4");
-    nameNode.appendChild(nameText);
-    nameNode.className = "name";
-    node.appendChild(nameNode);
+    var ownerNameText = document.createTextNode(repo.owner.login+'/');
+    var ownerName = document.createElement("span");
+    ownerName.className = "ownerName";
+    ownerName.appendChild(ownerNameText);
     
-    if(repo.language!=null){
-      var languageText = document.createTextNode('('+repo.language+')');
-      var languageNode = document.createElement("h5");
-      languageNode.appendChild(languageText);
-      languageNode.className = "language";
-      node.appendChild(languageNode);
-      node.appendChild(document.createElement("br"));
-    }
+    var repoNameText = document.createTextNode(repo.name);
+    var repoName = document.createElement("span");
+    repoName.className = "repoName";
+    repoName.appendChild(repoNameText);
+    
+    var nameNode = document.createElement("span");
+    nameNode.appendChild(ownerName);
+    nameNode.appendChild(repoName);
+    nameNode.className = "name";
+
+    node.appendChild(nameNode);
+
+    node.appendChild(document.createElement("br"));
+    node.appendChild(document.createElement("br"));
+    
     if(repo.description!=null){
       var descText = document.createTextNode(repo.description);
       var descNode = document.createElement("h5");
@@ -36,7 +42,9 @@ function putdata(json)
       node.appendChild(document.createElement("br"));  
     }
 
-    var starText = document.createTextNode(repo.stargazers_count+' Stars');
+    if(repo.language!=null)bottomText = repo.stargazers_count+' Stars  •  '+repo.language;
+    else bottomText = repo.stargazers_count+' Stars';
+    var starText = document.createTextNode(bottomText);
     var starNode = document.createElement("h5");
     starNode.appendChild(starText);
     starNode.className = "stars"
@@ -57,8 +65,6 @@ function fetchdata(){
   req.send();
   req.onload = function(){
     imgToggle();
-    $("span").remove();
-    $("header > h3").after('<span><iframe src="https://ghbtns.com/github-btn.html?user=nishanthvijayan&repo=GithubLatestProjects-Firefox&type=star&count=false" frameborder="0" scrolling="0" width="100px" height="20px"></iframe></span>');
     
     res = JSON.parse(req.responseText);
     putdata(res);
@@ -90,7 +96,7 @@ $(document).ready(function(){
 
   
   //sends "link to be opened" to main.js
-  $("body").on('click',"li", function(){
+  $("body").on('click',".name", function(){
     self.port.emit("linkClicked",this.data);
     return false;
   });

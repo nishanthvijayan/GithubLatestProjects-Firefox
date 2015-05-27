@@ -5,6 +5,7 @@
 
 body {
   background-color: #ffffff; 
+  font: Helvetica,arial,nimbussansl,liberationsans,freesans,clean,sans-serif,"Segoe UI Emoji","Segoe UI Symbol";
 }
 
 header{
@@ -15,6 +16,7 @@ header{
   top:0%;
   padding-top: 10px;
   text-align: center;
+  font-size: 21px;font-weight: 500;
 }
 header > h3{
   display: inline-block;
@@ -29,7 +31,7 @@ li {
     color: #333;
 }
 li:hover{
-  background-color: #e5e5e5;
+  background-color: #f9f9f9;
 }
 
 hr {
@@ -40,7 +42,16 @@ hr {
     background-color: #e5e5e5;
 }
 .name{
-  font-weight: 500;
+  color: #4183C4;
+  font-size: 16px;
+  font-weight: 200;
+}
+.name:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+.repoName{
+  font-weight: bold;
 }
 .language{
   font-weight: 400;
@@ -49,33 +60,32 @@ hr {
   font-weight: 400;
 }
 .stars{
-  font-weight: 100;
+  font-weight: 400;
+  color : #707070;
 } 
 footer{
   padding: 15px;
-  color: white;
-  background-color: #333;
+  background-color: #f9f9f9;
   text-align: center;
 }
 footer > a{
-  color: white;
-  text-decoration: underline;
+  color: #4183C4;
   cursor: pointer;
   font-size: small;
+  font-weight: 300;
+}
+footer > a:hover{
+  text-decoration: underline;
 }
 .loading{
   position: absolute;
   left: 90%;
-  height: 18px;
-  width: 18px;
+  height: 20px;
+  width: 20px;
 }
 .settings-btn{
   position: absolute;
   left: 80%;
-  height: 18px;
-  width: 18px;
-}
-iframe{
-  position: absolute;
-  left: 10%;
+  height: 20px;
+  width: 20px;
 }
