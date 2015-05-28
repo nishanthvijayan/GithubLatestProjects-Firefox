@@ -111,6 +111,10 @@ $(document).ready(function(){
     self.port.emit("linkClicked", "options.html" );
   });
 
+  $("body").on('click',".gh-btn", function(){
+    self.port.emit("linkClicked", "https://github.com/nishanthvijayan/GithubLatestProjects-Firefox/" );
+  });
+  
   $("body").on('click',".loading", function(){
     src = $('.loading').attr('src');
     if(src=="img/refresh-white.png") fetchdata();
