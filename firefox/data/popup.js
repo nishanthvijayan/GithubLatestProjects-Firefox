@@ -26,6 +26,7 @@ function putdata(json)
     var nameNode = document.createElement("span");
     nameNode.appendChild(ownerName);
     nameNode.appendChild(repoName);
+    nameNode.data = repo.html_url;
     nameNode.className = "name";
 
     node.appendChild(nameNode);
