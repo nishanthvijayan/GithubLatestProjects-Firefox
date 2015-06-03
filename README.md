@@ -8,7 +8,7 @@ https://github.com/nishanthvijayan/GithubLatestProjects-Chrome/
 ## Download  
 GithubLatestProjects is  available for download at:
 - Firefox: https://addons.mozilla.org/en-US/firefox/addon/github-latest/
-- Chrome: Coming Soon   
+- Chrome:  https://chrome.google.com/webstore/detail/github-latest/kdchgoioldnachocnkeljcmplgnigmhe?hl=en-US&gl=IN   
 
 ## Manual Installation
 This add-on was created using Firefox Add-on SDk.  
