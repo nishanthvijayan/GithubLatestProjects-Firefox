@@ -1,6 +1,10 @@
 # GithubLatestProjects
 A Mozilla Firefox add-on that lets you discover up &amp; coming Github projects.  
-The add-on displays a list of Open Source Projects on Github that were created within the past few days ( 7 by default,can be changed ).
+The add-on displays a list of Open Source Projects on Github that were created within the past few days ( 7 by default,can be changed ).   
+  
+Check out the Chrome extension repo here:  
+https://github.com/nishanthvijayan/GithubLatestProjects-Chrome/  
+  
 ## Download  
 GithubLatestProjects is  available for download at:
 - Firefox: https://addons.mozilla.org/en-US/firefox/addon/github-latest/
