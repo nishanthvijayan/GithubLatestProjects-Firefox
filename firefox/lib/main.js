@@ -7,7 +7,7 @@ var newsfeed = panels.Panel({
   width: 450,
   height: 500,
   contentURL: self.data.url("popup.html"),
-  contentScriptFile: [self.data.url("jquery.js"),self.data.url("popup.js")]
+  contentScriptFile: [self.data.url("jquery.js"),self.data.url("moment.js"),self.data.url("popup.js")]
 });
 
 
@@ -27,8 +27,10 @@ function popup(){
  };
 
 exports.main = function (options, callbacks) {
-    if (options.loadReason === 'install' || options.loadReason === 'upgrade') {
-        tabs.open("./options.html");
+    if (options.loadReason === 'upgrade'){
+      tabs.open("./options.html");
+    }else if(options.loadReason === 'install') {
+      tabs.open("https://github.com/nishanthvijayan/GithubLatestProjects-Firefox/");
     }
 };
 

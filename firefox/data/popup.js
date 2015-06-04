@@ -43,8 +43,9 @@ function putdata(json)
       node.appendChild(document.createElement("br"));  
     }
 
-    if(repo.language!=null)bottomText = repo.stargazers_count+' Stars  •  '+repo.language;
-    else bottomText = repo.stargazers_count+' Stars';
+    buildTime = moment(repo.created_at).fromNow();
+    if(repo.language!=null)bottomText = repo.stargazers_count+' Stars  •  '+repo.language+'  •  '+buildTime;
+    else bottomText = repo.stargazers_count+' Stars  •  '+buildTime;
     var starText = document.createTextNode(bottomText);
     var starNode = document.createElement("h5");
     starNode.appendChild(starText);
