@@ -17,6 +17,8 @@ header{
   padding-top: 10px;
   text-align: center;
   font-size: 21px;font-weight: 500;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.13);
+  z-index: 3;
 }
 header > h3{
   display: inline-block;
@@ -25,10 +27,12 @@ li > h4{
   display: inline-block;
 }
 li {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.13);
     list-style-type:none;
     padding: 15px;
     display: block;
     color: #333;
+    margin:2%;
 }
 li:hover{
   background-color: #f9f9f9;
@@ -37,7 +41,7 @@ li:hover{
 hr {
     border: none;
     width: 100%;
-    height: 1px;
+    height: 0px;
     color: #e5e5e5;
     background-color: #e5e5e5;
 }
@@ -67,17 +71,18 @@ footer{
   padding: 15px;
   background-color: #f9f9f9;
   text-align: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.13);
 }
 footer > a{
   color: #4183C4;
   cursor: pointer;
   font-size: small;
-  font-weight: 300;
+  font-weight: 500;
 }
 footer > a:hover{
   text-decoration: underline;
 }
-.loading{
+.loading-btn{
   position: absolute;
   left: 90%;
   height: 20px;
@@ -86,15 +91,8 @@ footer > a:hover{
 }
 .settings-btn{
   position: absolute;
-  left: 80%;
+  left: 5%;
   height: 20px;
   width: 20px;
-  cursor: pointer;
-}
-.gh-btn{
-  position: absolute;
-  left: 5%;
-  height: 30px;
-  width: 30px;
   cursor: pointer;
 }
