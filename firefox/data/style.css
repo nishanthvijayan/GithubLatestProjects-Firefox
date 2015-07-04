@@ -9,8 +9,9 @@ body {
 }
 
 header{
+  position: fixed;
   background-color: #333;
-  height: 40px;
+  height: 34px;
   color : #ffffff;
   width: 100%;
   top:0%;
@@ -22,6 +23,22 @@ header{
 }
 header > h3{
   display: inline-block;
+}
+
+.fa-gear{
+  float:left;
+  cursor: pointer;
+  padding: 0% 5% 0%;
+
+}
+.fa-refresh{
+  float:right;
+  cursor: pointer;
+  padding: 0% 5% 0%;
+}
+
+.ui-content{
+  margin-top: 50px;
 }
 li > h4{
   display: inline-block;
@@ -81,18 +98,4 @@ footer > a{
 }
 footer > a:hover{
   text-decoration: underline;
-}
-.loading-btn{
-  position: absolute;
-  left: 90%;
-  height: 20px;
-  width: 20px;
-  cursor: pointer;
-}
-.settings-btn{
-  position: absolute;
-  left: 5%;
-  height: 20px;
-  width: 20px;
-  cursor: pointer;
 }

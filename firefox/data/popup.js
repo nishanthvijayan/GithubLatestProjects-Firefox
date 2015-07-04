@@ -79,9 +79,7 @@ function fetchdata(){
 }
 
 function imgToggle(){
-  src = $('.loading').attr('src');
-  if(src=="img/refresh-white.png") $(".loading").attr("src","img/ajax-loader.gif");
-  else $(".loading").attr("src","img/refresh-white.png");
+  $( ".fa-refresh" ).toggleClass( "fa-spin" );
 }
 
 $(document).ready(function(){
@@ -109,17 +107,12 @@ $(document).ready(function(){
     return false;
   });
 
-  $("body").on('click',".settings-btn", function(){
+  $("body").on('click',".fa-gear", function(){
     self.port.emit("linkClicked", "options.html" );
   });
-
-  $("body").on('click',".gh-btn", function(){
-    self.port.emit("linkClicked", "https://github.com/nishanthvijayan/GithubLatestProjects-Firefox/" );
-  });
   
-  $("body").on('click',".loading", function(){
-    src = $('.loading').attr('src');
-    if(src=="img/refresh-white.png") fetchdata();
+  $("body").on('click',".fa-refresh", function(){
+    if(!$( ".fa-refresh" ).hasClass( "fa-spin" )) fetchdata();
   });
 
 });
