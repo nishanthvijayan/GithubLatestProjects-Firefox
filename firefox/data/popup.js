@@ -100,16 +100,14 @@ $(document).ready(function(){
     self.port.emit("linkClicked",this.data);
     return false;
   });
-  
-  //sends "link to be opened" to main.js
-  $("body").on('click',"a", function(){
-    self.port.emit("linkClicked",$(this).attr('data'));
-    return false;
-  });
 
   $("body").on('click',".fa-gear", function(){
     self.port.emit("linkClicked", "options.html" );
   });
+
+  $("body").on('click',".fa-code", function(){
+    self.port.emit("linkClicked", "https://bit.ly/1ghuKce" );
+  });  
   
   $("body").on('click',".fa-refresh", function(){
     if(!$( ".fa-refresh" ).hasClass( "fa-spin" )) fetchdata();
