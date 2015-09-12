@@ -1,10 +1,6 @@
-function putdata(json)
+function putData(json)
 { 
-
-  $("#hot > li").remove();
-  $("hr").remove();
-  $("#hot").append("<hr>");
-  for (var i = 0; i < parseInt(localStorage.maxCount);i++ ) {
+  for (var i = 0; i < parseInt(localStorage.maxCount) && i<json.items.length;i++ ) {
 
     repo = json.items[i];
 
@@ -43,7 +39,7 @@ function putdata(json)
       node.appendChild(document.createElement("br"));  
     }
 
-    buildTime = moment(repo.created_at).fromNow();
+    buildTime = (repo.tag==null)?moment(repo.created_at).fromNow():repo.tag;
     if(repo.language!=null)bottomText = repo.stargazers_count+' Stars  •  '+repo.language+'  •  '+buildTime;
     else bottomText = repo.stargazers_count+' Stars  •  '+buildTime;
     var starText = document.createTextNode(bottomText);
@@ -58,7 +54,7 @@ function putdata(json)
 
 }
 
-function fetchdata(){
+function fetchData(){
   imgToggle();
   daysSinceCreation = parseInt(localStorage.daysSinceCreation);
   date = new Date(new Date().getTime()-daysSinceCreation*24*60*60*1000).toISOString().slice(0,10)
@@ -67,15 +63,40 @@ function fetchdata(){
   req.send();
   req.onload = function(){
     imgToggle();
-    
     res = JSON.parse(req.responseText);
-    putdata(res);
+    putData(res);
 
   };
   req.onerror = function(){
     imgToggle();
   }
 
+}
+
+function fetchFeatured(){
+  imgToggle();
+  reqf =  new XMLHttpRequest();
+  reqf.open("GET",'https://ghtrending.herokuapp.com/featured/',true);
+  reqf.send();
+  reqf.onload = function(){
+    imgToggle();
+    res = JSON.parse(reqf.responseText);
+    putData(res);
+  };
+
+  reqf.onerror = function(){
+    imgToggle();
+  };
+}
+
+function fillData(){
+
+  $("#hot > li").remove();
+  $("hr").remove();
+  $("#hot").append("<hr>");
+  
+  fetchFeatured();
+  setTimeout(function(){fetchData();},2000);
 }
 
 function imgToggle(){
@@ -89,9 +110,9 @@ $(document).ready(function(){
   if(!localStorage.maxCount)localStorage.maxCount = "15";
   if(!localStorage.starCutoff)localStorage.starCutoff = "5";
   
-  fetchdata();
+  fillData();
   setInterval(function(){
-    fetchdata();
+    fillData();
   }, 60000*parseInt(localStorage.updateInterval));
 
   
@@ -110,7 +131,7 @@ $(document).ready(function(){
   });  
   
   $("body").on('click',".fa-refresh", function(){
-    if(!$( ".fa-refresh" ).hasClass( "fa-spin" )) fetchdata();
+    if(!$( ".fa-refresh" ).hasClass( "fa-spin" )) fillData();
   });
 
 });
