@@ -28,7 +28,7 @@ function popup(){
 
 exports.main = function (options, callbacks) {
     if(options.loadReason === 'install' || options.loadReason === 'upgrade') {
-      tabs.open("https://github.com/nishanthvijayan/GithubLatestProjects-Firefox/");
+      tabs.open("options.html");
     }
 };
 

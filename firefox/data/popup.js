@@ -7,7 +7,6 @@ function putData(json)
     if(parseInt(repo.stargazers_count)<parseInt(localStorage.starCutoff)){break;}
     
     var node = document.createElement("li");
-    node.data = repo.html_url;
 
     var ownerNameText = document.createTextNode(repo.owner.login+'/');
     var ownerName = document.createElement("span");
@@ -22,7 +21,7 @@ function putData(json)
     var nameNode = document.createElement("span");
     nameNode.appendChild(ownerName);
     nameNode.appendChild(repoName);
-    nameNode.data = repo.html_url;
+    nameNode.data =/(https?:\/\/([-\w\.]+)+(:\d+)?(\/([\w\/_\.]*(\?\S+)?)?)?)/.exec(repo.html_url)[0];
     nameNode.className = "name";
 
     node.appendChild(nameNode);
@@ -127,7 +126,7 @@ $(document).ready(function(){
   });
 
   $("body").on('click',".fa-code", function(){
-    self.port.emit("linkClicked", "https://bit.ly/1ghuKce" );
+    self.port.emit("linkClicked", "https://github.com/nishanthvijayan/GithubLatestProjects-Firefox/" );
   });  
   
   $("body").on('click',".fa-refresh", function(){
