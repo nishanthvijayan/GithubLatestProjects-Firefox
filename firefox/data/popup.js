@@ -21,7 +21,7 @@ function putData(json)
     var nameNode = document.createElement("span");
     nameNode.appendChild(ownerName);
     nameNode.appendChild(repoName);
-    nameNode.data =/(https?:\/\/([-\w\.]+)+(:\d+)?(\/([\w\/_\.]*(\?\S+)?)?)?)/.exec(repo.html_url)[0];
+    nameNode.data = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[.\!\/\\w]*))?)/i.exec(repo.html_url)[0];
     nameNode.className = "name";
 
     node.appendChild(nameNode);
